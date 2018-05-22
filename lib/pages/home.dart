@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
   final String title;
   
   final drawerItems = [
-    DrawerItem('Timeline', Icons.rss_feed),
+    DrawerItem('Timeline (crowdsourced)', Icons.rss_feed),
     DrawerItem('Makan Place', Icons.fastfood),
     DrawerItem('Shopping Place', Icons.shopping_cart),
     DrawerItem('Settings', Icons.settings),
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
     switch (pos) {
       case 0:
         return AppBar(
-              title: Text(widget.title),
+              title: Text(widget.drawerItems[_selectedDrawerIndex].title),
               bottom: TabBar(
                 isScrollable: false,
                 tabs: [Tab(text: "SG to JB"), Tab(text: "JB to SG")],
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             );
       default:
         return AppBar(
-          title: Text(widget.title),
+          title: Text(widget.drawerItems[_selectedDrawerIndex].title),
         );
     }
   }
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    Widget _drawer = Drawer(
+    final Widget _drawer = Drawer(
       child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
@@ -117,14 +117,14 @@ class _HomePageState extends State<HomePage> {
       return DefaultTabController(
         length: 2, 
         child: Scaffold(
-            appBar: _getAppBarForItem(_selectedDrawerIndex),
-            drawer: _drawer,
-            body: _getDrawerItemWidget(_selectedDrawerIndex),
-            floatingActionButton: FloatingActionButton(
-                backgroundColor: Theme.of(context).accentColor, 
-                child: Icon(Icons.photo_camera),
-                onPressed: () => print("Create Feed")
-            ),
+          appBar: _getAppBarForItem(_selectedDrawerIndex),
+          drawer: _drawer,
+          body: _getDrawerItemWidget(_selectedDrawerIndex),
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: Theme.of(context).accentColor, 
+              child: Icon(Icons.photo_camera),
+              onPressed: () => print("Create Feed")
+          ),
         ),
       ); 
     } else {
