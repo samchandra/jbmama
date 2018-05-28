@@ -114,7 +114,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('Message $_message');
 
     final Widget _drawer = Drawer(
       child: ListView(
